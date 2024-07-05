@@ -44,7 +44,6 @@ function subArticle()
 		<input type="hidden" name="sPage" value="<?php print $sPage ?>" />
 		<input type="hidden" name="articleNo" />
 		<input type="hidden" name="sName" />
-		<input type="hidden" name="sRoom" />
 
 		<a href="javascript:form.act.value='articleEdit';form.submit();"><img src="./images/btn_enter.png"></a>
 
@@ -303,7 +302,7 @@ function subArticleEditComplete()
 
 	if ($articleNo) {
 		// 編集
-		$sql = fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
+		$sql = fnSqlFManagerInsert(fnNextNo('FM'), $article, $room, $articleNote, $del);
 		$res = mysqli_query($conn, $sql);
 	} else {
 		// 新規登録
