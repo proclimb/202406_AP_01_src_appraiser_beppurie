@@ -126,14 +126,14 @@ function subArticle()
 					<td class="list_td<?php print $i ?>"><?php print $sellCharge ?></td>
 				</tr>
 			<?php
-				$i = ($i + 1) % 3;
+				$i = ($i + 1) % 2;
 			}
 			?>
 		</table>
 	</div>
+	</form>
 <?php
 }
-
 
 
 
@@ -297,16 +297,16 @@ function subArticleEditComplete()
 
 	if ($articleNo) {
 		// 編集
-		$sql = fnSqlArticleUpdate($articleNo,$article,$room,$keyPlace,$address,$articleNote,$keyBox,$drawing,$sellCharge,$del)
-		$sql = mysqli_query($conn,$sql);
+		$sql = fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
+		$res = mysqli_query($conn, $sql);
 	} else {
 		// 新規登録
 		$sql = fnSqlArticleInsert(fnNextNo('ARTICLE'), $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del);
 
 		$res = mysqli_query($conn, $sql);
 
-		 $sql = fnSqlFManagerInsert(fnNextNo('FM'),$article,$room,$articleNote,$del);
-		   $res = mysqli_query($conn,$sql);
+		$sql = fnSqlFManagerInsert(fnNextNo('FM'), $article, $room, $articleNote, $del);
+		$res = mysqli_query($conn, $sql);
 	}
 
 	$_REQUEST['act'] = 'articleSearch';
