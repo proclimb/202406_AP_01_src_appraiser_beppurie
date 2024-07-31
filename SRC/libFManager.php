@@ -488,7 +488,7 @@ function subFManagerViewEdit()
 			<input type="hidden" name="fMNo" value="<?php print $fMNo; ?>" />
 			<input type="hidden" name="pdfNo" value="<?php print $pdfNo; ?>" />
 			<input type="hidden" name="docNo" value="<?php print $docNo; ?>" />
-			<input type="hidden" name="sClassNo" value="<?php print $sClassNo ?>" /> // ← 追加
+			<input type="hidden" name="sClassNo" value="<?php print $sClassNo ?>" />
 
 			<table border="0" cellpadding="5" cellspacing="1">
 				<tr>
@@ -557,7 +557,7 @@ function subFManagerViewEditComplete()
 	}
 
 	if ($_FILES['pdfFile']['tmp_name']) {
-		move_uploaded_file($_FILES['pdfFile']['tmp_name'], './pdfs/' . $pdfNo . '.pdf');
+		move_uploaded_file($_FILES['pdfFile']['tmp_name'], './pdfs/' . substr('0000000000' . $pdfNo, -10) . '.pdf');
 	}
 
 	$_REQUEST['act'] = 'fManagerView';
